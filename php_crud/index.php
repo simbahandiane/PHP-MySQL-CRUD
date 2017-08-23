@@ -6,6 +6,15 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+	<?php if (isset($_SESSION['msg'])): ?>
+		<div class="msg">
+			<?php
+				echo $_SESSION['msg'];
+				unset($_SESSION['msg']);
+			?>
+		</div>
+	<?php endif?>
 	<table>
 		<thead>
 			<tr>
@@ -42,10 +51,6 @@
 	</table>
 
 	<form method="POST" action="server.php">
-		<div class="input-group">
-			<label>Employee Id</label>
-			<input type="text" name="employeeId">
-		</div>
 		<div class="input-group">
 			<label>Employee Name</label>
 			<input type="text" name="employeeName">

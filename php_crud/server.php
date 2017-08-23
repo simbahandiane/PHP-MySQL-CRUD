@@ -1,4 +1,6 @@
 <?php
+
+	session_start();
 //initialize
 	$EmployeeId = 0;
 	$EmployeeName = "";
@@ -20,7 +22,9 @@
 
 		$query = "INSERT INTO sampledb ( EmployeeName, Position, Department, Status) VALUES ('$EmployeeName','$Position','$Department','$Status')";
 		mysqli_query($database, $query);
-		header('location : index.php'); //redirect
+		$_SESSION['msg']= "Record has been saved";
+		header("Location: index.php"); //redirect
+		exit();
 	}
 
 	//Read
