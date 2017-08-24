@@ -7,6 +7,7 @@
 	$Department = "";
 	$Position = "";
 	$Status = "";
+	$update_rec = false;
 
 	$database = mysqli_connect('localhost','root','D3c0d3d@23','sample');
 	
@@ -29,4 +30,22 @@
 
 	//Read
 	$results = mysqli_query($database,"SELECT * FROM sampledb");
+
+	//update
+	if(isset($_POST['update'])){
+		$EmployeeId = mysql_real_escape_string($_POST['employeeId']);
+		$EmployeeName = mysql_real_escape_string($_POST['employeeName']);
+		$Department = mysql_real_escape_string($_POST['department']);
+		$Position = mysql_real_escape_string($_POST['position']);
+		$status = mysql_real_escape_string($_POST['status']);	}
+
+	if (isset($_GET['del'])) {
+		# code...
+		printf($EmployeeId) ;
+		$EmployeeId = $_GET['del'];
+		mysqli_query($database, "DELETE FROM sampledb WHERE EmployeeId = $EmployeeId");
+		$_SESSION['msg'] = "Employee Deleted";
+		header("Location: index.php");
+		exit();
+	}
 ?>
