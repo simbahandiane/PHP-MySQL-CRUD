@@ -1,24 +1,35 @@
-<?php include('server.php');
+<!-- <?php include('server.php');
 	if (isset($_GET['edit'])) {
 		# code...
 		$EmployeeId = $_GET['edit'];
-		$rec = mysqli_query($database, "SELECT * FROM sampledb WHERE EmployeeId = $EmployeeId");
+		$rec = mysqli_query($database, "SELECT * FROM sampledb WHERE EmployeeId = '$EmployeeId'");
 		$record = mysqli_fetch_array($rec);
-		echo $record;
 		$EmployeeId = $record['EmployeeId'];
 		$EmployeeName = $record['EmployeeName'];
 		$Department = $record['Department'];
 		$Position = $record['Position'];
 		$Status = $record['Status'];
 	}
-?>
+
+?> -->
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Sample CRUD</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<form action="./server.php" method="GET">
+	<input type="text" name="q">
+	<input type="submit"value="Search">
+</form>
+ <?php echo $output?>
 
 	<?php if (isset($_SESSION['msg'])): ?>
 		<div class="msg">
@@ -60,7 +71,7 @@
 		</tbody>
 	</table>
 
-	<form method="POST" action="server.php">
+	<form method="POST" action="server.php" class="form-group">
 		<input type="hidden" name="EmployeeId" value="<?php echo $EmployeeId;?>">
 		<div class="input-group" >
 			<label>Employee Name</label>
@@ -80,13 +91,13 @@
 		</div>
 		<div class="input-group">
 		<?php if($update_rec == false) : ?>
-			<button type="submit" name="save" class="btn">Save</button>
+			<button type="submit" name="save" class="btn btn-default">Save</button>
 		<?php else: ?>
-			<button type="submit" name="update" class="btn">Update</button>
+			<button type="submit" name="update" class="btn btn-primary">Update</button>
 		<?php endif?>
-			<button type="submit" name="delete" class="btn">Delete</button>
+			<button name="delete" type="button" class="btn btn-danger">Delete</button>
 			
 		</div>
-	</form>
+	</form> 
 </body>
 </html>
