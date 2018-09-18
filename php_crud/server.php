@@ -23,7 +23,7 @@
 
 		$query = "INSERT INTO sampledb ( EmployeeName, Position, Department, Status) VALUES ('$EmployeeName','$Position','$Department','$Status')";
 		mysqli_query($database, $query);
-		$_SESSION['msg']= "Record has been already saved";
+		$_SESSION['msg']= "Record has been saved"; //deleted a part of the comment
 		header("Location: index.php"); //redirect
 		exit();
 	}
